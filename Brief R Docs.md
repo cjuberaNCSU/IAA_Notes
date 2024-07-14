@@ -1,14 +1,18 @@
 # Common Processes 
+Combinations of functions that are commonly used in data processing tasks.
+
 ## Change Column Types
 Col1, Col2, Col3 are columns that we want to change to factors
 ```r
-data <- data %>% mutate(across(c(Col1, Col2, Col3), as.factor))
+data <- data %>%
+	mutate(across(c(Col1, Col2, Col3), as.factor))
 ```
 `c(Col1, Col2, Col3)` selects Col1, Col2, and Col3
 
 If we want to change all but Col4 and Col 5 to factor
 ```r
-data <- data %>% mutate(across(-c(Col4, Col5), as.factor))
+data <- data %>%
+	mutate(across(-c(Col4, Col5), as.factor))
 ```
 `-c(Col4, Col5)` represents not Col4 or Col5
 
@@ -20,7 +24,8 @@ data %>%
 
 ## Drop a Column
 ```r
-data <- data %>% select(-Col_To_Drop)
+data <- data %>%
+	select(-Col_To_Drop)
 ```
 `select(-Col_To_Drop)` selects all Columns except for Col_To_Drop
 
@@ -36,17 +41,18 @@ data <- data %>%
 ## Change a Column by Multiple Conditions
 Can use multiple mutate + if_else calls, or can use `case_when`
 ```r
-df <- df %>% mutate(Country =  case_when(
-  Country == "US" ~ "United States",
-  Country == "U.S.A" ~ "United States",
-  Country == "U.S." ~ "United States",
-  Country == "USA" ~ "United States",
-  Country == "United States of America" ~ "United States",
-  Country == "The United States" ~ "United States",
-  Country == "united states" ~ "United States",
-  Country == "Durham" ~ "United States",
-  State == "North Carolina" & is.na(Country) ~ "United States",
-  .default = Country 
+df <- df %>%
+	mutate(Country =  case_when(
+	  Country == "US" ~ "United States",
+	  Country == "U.S.A" ~ "United States",
+	  Country == "U.S." ~ "United States",
+	  Country == "USA" ~ "United States",
+	  Country == "United States of America" ~ "United States",
+	  Country == "The United States" ~ "United States",
+	  Country == "united states" ~ "United States",
+	  Country == "Durham" ~ "United States",
+	  State == "North Carolina" & is.na(Country) ~ "United States",
+	  .default = Country 
 ))
 ```
 A more efficient approach here would be to use `Country %in% c("US", "U.S.A", ... "Durham"`, but they produce the same results.
@@ -64,8 +70,9 @@ test <- anti_join(data, train, by = 'id')
 `0.7` is the percent of the data to include in the training.
 
 # Functions
-## Data Manipulation Functions
-### `across()`
+Quick notes on functions that are commonly used in data pre-processing, as well as a link to more detailed documentation. 
+
+## Data Manipulation Functions### `across()`
 Used to mutate across multiple columns.
 Example:
 ```r
@@ -122,7 +129,7 @@ df %>%
 [Full Documentation](https://tidyr.tidyverse.org/reference/separate_wider_delim.html)
 
 ### `na_if()`
-Sets value of a column equal to NA based on a condition
+Sets the value of a column equal to NA based on a condition
 Example:
 ```r
 na_if(y, "") # y is the column and "" is the value to set to NA
@@ -133,7 +140,7 @@ na_if(y, "") # y is the column and "" is the value to set to NA
 Split string column into character matrix (table) with a column for each split.
 Example:
 ```r
-df %>% mutate(Birth_Month = str_split_fixed(df$Birth_Month_Year, ", ", 2)[,1],
+df %>%mutate(Birth_Month = str_split_fixed(df$Birth_Month_Year, ", ", 2)[,1],
               Birth_Year = str_split_fixed(df$Birth_Month_Year, ", ", 2)[,2])
 ```
 Better to use `seperate_wider_delim()`
@@ -157,7 +164,7 @@ str_replace_all(String, ",", "")
 [Full Documentation](https://stringr.tidyverse.org/reference/str_replace.html)
 
 ### `str_to_title()`, `str_to_upper()`, `str_to_lower()`, and `str_to_sentence()`
-Ways to change capitalization of a string.
+Ways to change the capitalization of a string.
 - Title Case
 - UPPER CASE
 - lower case
@@ -169,7 +176,7 @@ Remove leading and trailing whitespace from a string
 [Full Documentation](https://stringr.tidyverse.org/reference/str_trim.html)
 									
 ## Time  
-A lot of functions do the similar things for different time formats, use [lubridate cheatsheet](https://rawgit.com/rstudio/cheatsheets/main/lubridate.pdf)
+A lot of functions do similar things for different time formats. Use [lubridate cheatsheet](https://rawgit.com/rstudio/cheatsheets/main/lubridate.pdf)
 
 ### `mdy()`
 Parse a date by Month, Year, and Day
@@ -188,13 +195,13 @@ month(dates) # 4
 [Full Documentation](https://lubridate.tidyverse.org/reference/day.html)
 
 # Misc.
-- `month.name` is a list in R that can be indexed with each month number. 
+- `month.name` is a list in R that can be indexed by each month's number. 
 - `slice_max(col, n=5)` for top 5 and `slice_min(col, n=5)` for bottom 5 by values of col.
-- `state.name` is a default list in R that contains US state names in title case. Useful for checking is a string is a US state. 
+- `state.name` is a default list in R that contains US state names in title case. Useful for checking if a string is a US state. 
 	- Example: `mutate(State = ifelse(State %in% state.name,State,NA))`
 - `unique(Col)` is useful for checking work on qualitative columns.
-- `head()` (for first couple of rows) or `sample()` (for random rows) can give you a quick subset of your dataframe to view.
-- To get value not in list you can use `!(Value %in% List)` 
+- `head()` (for the first couple of rows) or `sample()` (for random rows) can give you a quick subset of your dataframe to view.
+- To get value not in the list, you can use `!(Value %in% List)` 
 - Country code library can convert all types of country spellings to standard type: `countrycode(Country, origin = 'country.name', destination = 'iso3c')` 
 
 
