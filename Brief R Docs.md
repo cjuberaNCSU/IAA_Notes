@@ -77,7 +77,8 @@ test <- anti_join(data, train, by = 'id')
 # Functions
 Quick notes on functions that are commonly used in data pre-processing, as well as a link to more detailed documentation. 
 
-## Data Manipulation Functions### `across()`
+## Data Manipulation Functions
+### `across()`
 Used to mutate across multiple columns.
 Example:
 ```r
