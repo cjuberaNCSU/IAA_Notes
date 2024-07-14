@@ -198,8 +198,8 @@ mdy(010210) # returns "2010-01-02"
 ### `day()`, `month()`, or `year()`
 Get specific time out of a date object 
 ```r
-library(lubridate)
-dates <- lubridate::my(c("Apr 2020", "5,  2024", "December 20"))
+library(lubridate) # need lubridate for my, month, year functions
+dates <- my(c("Apr 2020", "5,  2024", "December 20")) # my for Month Year
 month(dates) # retruns 4 5 12
 year(dates) # returns 2020 2024 2020
 ```
