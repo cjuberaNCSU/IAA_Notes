@@ -150,6 +150,7 @@ df %>%mutate(Birth_Month = str_split_fixed(df$Birth_Month_Year, ", ", 2)[,1],
               Birth_Year = str_split_fixed(df$Birth_Month_Year, ", ", 2)[,2])
 ```
 Better to use `seperate_wider_delim()`
+
 [Full Documentation](https://www.rdocumentation.org/packages/stringr/versions/0.6.1/topics/str_split_fixed)
 
 ### `grepl()`
@@ -175,10 +176,12 @@ Ways to change the capitalization of a string.
 - UPPER CASE
 - lower case
 - Sentence case
+- 
 [Full Documentation](https://stringr.tidyverse.org/reference/case.html?q=str_to_#ref-usage)
 
 ### `str_squish()` or `str_trim()`
 Remove leading and trailing whitespace from a string
+
 [Full Documentation](https://stringr.tidyverse.org/reference/str_trim.html)
 									
 ## Time  
@@ -189,15 +192,18 @@ Parse a date by Month, Year, and Day
 ```r
 mdy(010210) # returns "2010-01-02"
 ```
+
 [Full Documentation](https://lubridate.tidyverse.org/reference/ymd.html)
 
 ### `day()`, `month()`, or `year()`
 Get specific time out of a date object 
 ```r
-dates <- my("Apr 2020")
-year(dates) # 2020
-month(dates) # 4
+library(lubridate)
+dates <- lubridate::my(c("Apr 2020", "5,  2024", "December 20"))
+month(dates) # retruns 4 5 12
+year(dates) # returns 2020 2024 2020
 ```
+
 [Full Documentation](https://lubridate.tidyverse.org/reference/day.html)
 
 # Misc.
