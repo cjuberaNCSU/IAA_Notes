@@ -35,7 +35,9 @@ data <- data %>%
 	mutate(Col1 = ifelse(Col1 > 0, Col1 + Col2, Col1))
 ```
 `Col1 > 0` is a conditional that is being tested
+
 `Col1 + Col2` is what happens when the conditional (`Col1 > 0` in this example) is True
+
 `Col1` is what happens when the conditional is False
 
 ## Change a Column by Multiple Conditions
@@ -56,8 +58,11 @@ df <- df %>%
 ))
 ```
 A more efficient approach here would be to use `Country %in% c("US", "U.S.A", ... "Durham"`, but they produce the same results.
+
 `Country == "US"` is the conditional tested.
+
 `~ "United States"` is the result returned when the condition is True.
+
 `.default = Country` returns `Country` when none of the cases are used.
 
 ## Split a Dataset into Training and Testing
