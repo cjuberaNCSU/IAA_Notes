@@ -9,7 +9,7 @@ data <- data %>%
 ```
 `c(Col1, Col2, Col3)` selects Col1, Col2, and Col3
 
-If we want to change all but Col4 and Col 5 to factor
+If we want to change all columns except for Col4 and Col5 to factor
 ```r
 data <- data %>%
 	mutate(across(-c(Col4, Col5), as.factor))
