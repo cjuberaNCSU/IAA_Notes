@@ -16,11 +16,13 @@ data <- data %>%
 ```
 `-c(Col4, Col5)` represents not Col4 or Col5
 
+
 ## Split a String Column into Multiple Columns
 ```r
 data %>% 
   separate_wider_delim(Combined_Col, delim=",", names = c("Col1", "Col2")) 
 ```
+
 
 ## Drop a Column
 ```r
@@ -28,6 +30,7 @@ data <- data %>%
 	select(-Col_To_Drop)
 ```
 `select(-Col_To_Drop)` selects all Columns except for Col_To_Drop
+
 
 ## Change a Column by a Condition
 ```r
@@ -39,6 +42,7 @@ data <- data %>%
 `Col1 + Col2` is what happens when the conditional (`Col1 > 0` in this example) is True
 
 `Col1` is what happens when the conditional is False
+
 
 ## Change a Column by Multiple Conditions
 Can use multiple mutate + if_else calls, or can use `case_when`
@@ -65,6 +69,7 @@ A more efficient approach here would be to use `Country %in% c("US", "U.S.A", ..
 
 `.default = Country` returns `Country` when none of the cases are used.
 
+
 ## Split a Dataset into Training and Testing
 ```r
 set.seed(123) 
@@ -73,6 +78,7 @@ train <- data %>% sample_frac(0.7)
 test <- anti_join(data, train, by = 'id')
 ```
 `0.7` is the percent of the data to include in the training.
+
 
 # Functions
 Quick notes on functions that are commonly used in data pre-processing, as well as a link to more detailed documentation. 
@@ -87,6 +93,7 @@ data <- data %>% mutate(across(c(Col1, Col2), as.factor))
 **Look at full documentation for more advanced applications**
 [Full Documentation](https://dplyr.tidyverse.org/reference/across.html)
 
+
 ### `mutate()`
 Used to change or create new columns.
 Example:
@@ -95,6 +102,7 @@ df %>% mutate(z = x + y) # create a z column that equal to x + y
 ```
 [Full Documentation](https://dplyr.tidyverse.org/reference/mutate.html)
 
+
 ### `if_else()`
 Used to return values based on a conditional statement.
 Example:
@@ -102,6 +110,7 @@ Example:
 if_else(x < 0, "negative", "positive", missing = "missing")
 ```
 [Full Documentation](https://dplyr.tidyverse.org/reference/if_else.html)
+
 
 ### `case_when()`
 Used to return values based on multiple conditional statements.
@@ -116,6 +125,7 @@ case_when(
 ```
 [Full Documentation](https://dplyr.tidyverse.org/reference/case_when.html?q=case_#null)
 
+
 ### `seperate_longer_delim()`
 Used to split a string column into multiple rows.
 Example:
@@ -125,6 +135,7 @@ df %>%
 ```
 [Full Documentation](https://tidyr.tidyverse.org/reference/separate_longer_delim.html)
 
+
 ### `seperate_wider_delim()`
 Used to split a string column into multiple columns.
 Example:
@@ -133,6 +144,7 @@ df %>%
   separate_wider_delim(Birth_Month_Year, delim=", ", names = c("Month", "Year")) 
 ```
 [Full Documentation](https://tidyr.tidyverse.org/reference/separate_wider_delim.html)
+
 
 ### `na_if()`
 Sets the value of a column equal to NA based on a condition
@@ -153,6 +165,7 @@ Better to use `seperate_wider_delim()`
 
 [Full Documentation](https://www.rdocumentation.org/packages/stringr/versions/0.6.1/topics/str_split_fixed)
 
+
 ### `grepl()`
 A [regex](https://cheatography.com/davechild/cheat-sheets/regular-expressions/) search of a string value that returns True if a string contains a value and False otherwise.
 Example:
@@ -160,7 +173,9 @@ Example:
 grepl("[0-9]", Birth_Month) # if there is a number in the string return True
 
 ```
+
 [Full Documentation](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/grep)
+
 
 ### `str_replace_all()` or `str_replace()`
 Replace a pattern within a string with another string value. `str_replace()` for first match and `str_replace_all()` for all matches. 
@@ -168,7 +183,9 @@ Example:
 ```r
 str_replace_all(String, ",", "")
 ```
+
 [Full Documentation](https://stringr.tidyverse.org/reference/str_replace.html)
+
 
 ### `str_to_title()`, `str_to_upper()`, `str_to_lower()`, and `str_to_sentence()`
 Ways to change the capitalization of a string.
@@ -183,28 +200,31 @@ Ways to change the capitalization of a string.
 Remove leading and trailing whitespace from a string
 
 [Full Documentation](https://stringr.tidyverse.org/reference/str_trim.html)
-									
+
+
 ## Time  
 A lot of functions do similar things for different time formats. Use [lubridate cheatsheet](https://rawgit.com/rstudio/cheatsheets/main/lubridate.pdf)
 
 ### `mdy()`
-Parse a date by Month, Year, and Day
+Parse a date by Month, Day, and Year from string or int
 ```r
 mdy(010210) # returns "2010-01-02"
 ```
 
 [Full Documentation](https://lubridate.tidyverse.org/reference/ymd.html)
 
+
 ### `day()`, `month()`, or `year()`
 Get specific time out of a date object 
 ```r
 library(lubridate) # need lubridate for my, month, year functions
-dates <- my(c("Apr 2020", "5,  2024", "December 20")) # my for Month Year
-month(dates) # retruns 4 5 12
+dates <- my(c("Apr 2020", "5,  2024", "December 20")) # my to convert Month Year strings/ints into proper date format
+month(dates) # returns 4 5 12
 year(dates) # returns 2020 2024 2020
 ```
 
 [Full Documentation](https://lubridate.tidyverse.org/reference/day.html)
+
 
 # Misc.
 - `month.name` is a list in R that can be indexed by each month's number. 
