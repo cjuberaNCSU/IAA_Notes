@@ -217,7 +217,7 @@ A lot of functions do similar things for different time formats. Use [lubridate 
 ### `mdy()`
 Parse a date by Month, Day, and Year from string or int
 ```r
-mdy(010210) # returns "2010-01-02"
+mdy(c("2-1-20", "05-04-2019", 100201)) # returns 2020-02-01 2019-05-04 2001-10-02
 ```
 
 [Full Documentation](https://lubridate.tidyverse.org/reference/ymd.html)
