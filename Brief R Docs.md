@@ -93,6 +93,7 @@ Example:
 data <- data %>% mutate(across(c(Col1, Col2), as.factor))
 ```
 **Look at full documentation for more advanced applications**
+
 [Full Documentation](https://dplyr.tidyverse.org/reference/across.html)
 
 
