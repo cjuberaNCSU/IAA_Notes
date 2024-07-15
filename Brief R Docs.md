@@ -170,6 +170,12 @@ Better to use `seperate_wider_delim()`
 
 ### `grepl()`
 A [regex](https://cheatography.com/davechild/cheat-sheets/regular-expressions/) search of a string value that returns True if a string contains a value and False otherwise.
+
+Some useful regex things:
+- ‘[:digit:]’ Digits: 0 1 2 3 4 5 6 7 8 9.
+- ‘+’ a plus looks for one or more occurrences of the value. Example: "[:digit:]+" looks for one or more digits
+
+
 Example:
 ```r
 grepl("[0-9]", Birth_Month) # if there is a number in the string return True
