@@ -46,6 +46,8 @@ data <- data %>%
 
 ## Change a Column by Multiple Conditions
 Can use multiple mutate + if_else calls, or can use `case_when`
+
+**Be careful with `case_when()` because the order of tests matters, just like a series of if-else statements.
 ```r
 df <- df %>%
 	mutate(Country =  case_when(
