@@ -148,6 +148,13 @@ df %>%
 ```
 [Full Documentation](https://tidyr.tidyverse.org/reference/separate_wider_delim.html)
 
+## `word()`
+Extract a word from a sentence.
+```r
+word("My name is Charlie", 1) # Returns My
+```
+[Full Documentation](https://stringr.tidyverse.org/reference/word.html)
+
 
 ### `na_if()`
 Sets the value of a column equal to NA based on a condition
@@ -231,7 +238,13 @@ dates <- my(c("Apr 2020", "5,  2024", "December 20")) # my to convert Month Year
 month(dates) # returns 4 5 12
 year(dates) # returns 2020 2024 2020
 ```
+[Full Documentation](https://lubridate.tidyverse.org/reference/day.html)
 
+## `wday()`
+Get the day of the week from a date value
+```r
+wday(mdy("1/25/2001"), abbr = FALSE, label = TRUE) # Returns Thursday
+```
 [Full Documentation](https://lubridate.tidyverse.org/reference/day.html)
 
 
