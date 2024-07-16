@@ -243,6 +243,7 @@ year(dates) # returns 2020 2024 2020
 - `unique(Col)` is useful for checking work on qualitative columns.
 - `head()` (for the first couple of rows) or `sample()` (for random rows) can give you a quick subset of your dataframe to view.
 - To get value not in the list, you can use `!(Value %in% List)` 
-- Country code library can convert all types of country spellings to standard type: `countrycode(Country, origin = 'country.name', destination = 'iso3c')` 
+- Country code library can convert all types of country spellings to standard type: `countrycode(Country, origin = 'country.name', destination = 'iso3c')`
+-   `df_auto <- rename(df_auto, Miles_Per_Gallon=MPG)` to change a column's name.
 
 
